@@ -1,5 +1,5 @@
 ﻿using System;
-using Domain;
+using FizzBuzz.Domain;
 
 namespace CMFB
 {
@@ -10,18 +10,35 @@ namespace CMFB
             var fizzBuzzService = new FizzBuzzService()
             {
                 MinNumber = GetNumericInputFromUser("Enter the min number to start from", 1),
-                MaxNumber = GetNumericInputFromUser("Enter the max number to go to", 100)
+                MaxNumber = GetNumericInputFromUser("Enter the max number to stop at", 100)
             };
-
+            
             fizzBuzzService.AddMap(
-                GetNumericInputFromUser("Enter number to replace, or hit enter to use the default", 3),
-                GetStringInputFromUser("Enter fizz word, or hit enter to just use the default", "Fizz")
+                GetNumericInputFromUser("Enter first number to replace, or hit enter to use the default of 3", 3),
+                GetStringInputFromUser("Enter fizz word, or hit enter to just use the default of Fizz", "Fizz")
                 );
 
             fizzBuzzService.AddMap(
-               GetNumericInputFromUser("Enter number to replace, or hit enter to use the default", 5),
-               GetStringInputFromUser("Enter buzz word, or hit enter to just use the default", "Buzz")
+               GetNumericInputFromUser("Enter next number to replace, or hit enter to use the default of 5", 5),
+               GetStringInputFromUser("Enter buzz word, or hit enter to just use the default of Buzz", "Buzz")
                );
+
+            while (true)
+            {
+                var number = GetNumericInputFromUser("Enter another number to replace, or hit enter get the results", -1);
+                if (number == -1)
+                {
+                    break;
+                }
+
+                var word = GetStringInputFromUser($"Enter the replacement word for number {number}, or hit enter to get the results", string.Empty);
+                if (string.IsNullOrEmpty(word))
+                {
+                    break;
+                }
+
+                fizzBuzzService.AddMap(number, word);
+            }
 
             var results = fizzBuzzService.GetAllValues();
             
@@ -30,7 +47,7 @@ namespace CMFB
                 Console.WriteLine(result);
             }
 
-
+            // Pause for user input
             Console.ReadKey();
         }
 
