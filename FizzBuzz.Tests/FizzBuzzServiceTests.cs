@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using FizzBuzz.Domain;
 using NUnit.Framework;
@@ -87,31 +86,6 @@ namespace FizzBuzz.Tests
             Assert.AreEqual(result[3], "Quatre444");
 
         }
-
-        [Test]
-        public void ShouldResetValuesToDefaults()
-        {
-          //Change all the possible properties
-            _fizzBuzzService.MinNumber = 3;
-            _fizzBuzzService.MaxNumber = 5;
-            _fizzBuzzService.AddMap(3, "Three3");
-            _fizzBuzzService.AddMap(4, "Four4");
-            _fizzBuzzService.AddMap(5, "Five5");
-
-            _fizzBuzzService.Reset();
-
-            Assert.AreEqual(_fizzBuzzService.MinNumber, 1);
-            Assert.AreEqual(_fizzBuzzService.MaxNumber, 100);
-
-            var result = _fizzBuzzService.GetAllValues().ToList();
-
-            Assert.AreEqual(result.Count, 100);
-            Assert.AreEqual(result[0], "1");
-            Assert.AreEqual(result[2], "Fizz");
-            Assert.AreEqual(result[4], "Buzz");
-            Assert.AreEqual(result[14], "FizzBuzz");
-        }
-
      
 
         /********************************************************************
