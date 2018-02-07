@@ -73,18 +73,9 @@ namespace FizzBuzz.Domain
         public FizzBuzzService()
         {
             _maps = new Dictionary<int, string>();
-            Reset();
-        }
-
-        /// <summary>
-        /// Sets values back to the defaults
-        /// </summary>
-        public void Reset()
-        {
             MaxNumber = 100;
             MinNumber = 1;
 
-            _maps.Clear();
 
             AddMap(3, "Fizz");
             AddMap(5, "Buzz");
