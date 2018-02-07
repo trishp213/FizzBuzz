@@ -75,10 +75,6 @@ namespace FizzBuzz.Domain
             _maps = new Dictionary<int, string>();
             MaxNumber = 100;
             MinNumber = 1;
-
-
-            AddMap(3, "Fizz");
-            AddMap(5, "Buzz");
         }
 
         /// <summary>
