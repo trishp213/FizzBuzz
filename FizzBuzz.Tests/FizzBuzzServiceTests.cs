@@ -22,6 +22,7 @@ namespace FizzBuzz.Tests
         [Test]
         public void ShouldReturnFizzForNumber3()
         {
+            _fizzBuzzService.AddMap(3, "Fizz");
             var result = _fizzBuzzService.GetValueForNumber(3);
             Assert.AreEqual(result, "Fizz");
         }
@@ -29,32 +30,27 @@ namespace FizzBuzz.Tests
         [Test]
         public void ShouldReturnBuzzForNumber5()
         {
+            _fizzBuzzService.AddMap(5, "Buzz");
             var result = _fizzBuzzService.GetValueForNumber(5);
             Assert.AreEqual(result, "Buzz");
         }
 
         [Test]
-        public void ShouldReturnFizzBuzzForNumber15()
+        public void ShouldConcatenateWordsWhenDivisibleBy2MappedNumbers()
         {
+            _fizzBuzzService.AddMap(3, "Fizz");
+            _fizzBuzzService.AddMap(5, "Buzz");
+
             var result = _fizzBuzzService.GetValueForNumber(15);
+
             Assert.AreEqual(result, "FizzBuzz");
         }
 
         [Test]
-        public void ShouldReturn4ForNumber4()
+        public void ShouldReturnNumberAsStringWhenNumberNotMappedForReplacement()
         {
             var result = _fizzBuzzService.GetValueForNumber(4);
             Assert.AreEqual(result, "4");
-        }
-
-        [Test]
-        public void ShouldOverwriteDefaultFizzWord()
-        {
-            _fizzBuzzService.AddMap(3, "Fizzy");
-            
-            var result = _fizzBuzzService.GetValueForNumber(3);
-            
-            Assert.AreEqual(result, "Fizzy");
         }
 
         [Test]
@@ -123,24 +119,21 @@ namespace FizzBuzz.Tests
       * ***************************************************************/
 
         [Test]
-        public void ShouldReturnArrayOf100Strings()
+        public void ShouldReturnArrayOfMaxNumberStrings()
         {
             var result = _fizzBuzzService.GetAllValues().ToList();
-
-            Assert.AreEqual(result.Count, 100);
-            Assert.AreEqual(result[0], "1");
-            Assert.AreEqual(result[2], "Fizz");
-            Assert.AreEqual(result[4], "Buzz");
-            Assert.AreEqual(result[14], "FizzBuzz");
+            Assert.AreEqual(_fizzBuzzService.MaxNumber, 100);
+            Assert.AreEqual(result.Count, _fizzBuzzService.MaxNumber);
         }
 
         [Test]
-        public void ShouldReturnArrayOf7Strings()
+        public void ShouldReturnArrayOfMaxNumberMinusMinNumberPlus2Strings()
         {
+            _fizzBuzzService.MinNumber = 3;
             _fizzBuzzService.MaxNumber = 7;
             var result = _fizzBuzzService.GetAllValues().ToList();
 
-            Assert.AreEqual(result.Count, 7);
+            Assert.AreEqual(result.Count, 5);
         }
 
 
